@@ -26,11 +26,20 @@ spec:
         - containerPort: 3306 
         env:
           - name: MYSQL_ROOT_PASSWORD
-            value: redhat
+            valueForm: 
+              secretkeyRef:
+                name: mysql-database-app-secret
+                key: password
           - name: MYSQL_USER
-            value: kailash
+            valueForm: 
+              secretkeyRef:
+                name: mysql-database-app-secret
+                key: user
           - name: MYSQL_PASSWORD
-            value: redhat   
+            valueForm: 
+              secretkeyRef:
+                name: mysql-database-app-secret    #secret name
+                key: password                  #secret value of key 
           - name: MYSQL_DATABASE
             value: testdata
         volumeMounts:
