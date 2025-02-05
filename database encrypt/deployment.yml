@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-database-app 
+  namespace: database
+  labels:
+    app: mysql
+    enviorment: database  
+spec:
+  selector:
+    matchLabels:
+      app: mysql-database-app
+  template:
+    metadata:
+      labels:
+        app: mysql-database-app
+    spec:
+      containers:
+      - name: mysql-database-app
+        image: mysql:latest
+        resources:
+          limits:
+            memory: "1000Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 3306 
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueForm: 
+              secretkeyRef:
+                name: mysql-database-app-secret
+                key: password
+          - name: MYSQL_USER
+            valueForm: 
+              secretkeyRef:
+                name: mysql-database-app-secret
+                key: user
+          - name: MYSQL_PASSWORD
+            valueForm: 
+              secretkeyRef:
+                name: mysql-database-app-secret    #secret name
+                key: password                  #secret value of key
+          - name: MYSQL_DATABASE
+            value: testdata
+        volumeMounts:
+          - name:  datastore
+            mountPath:  /var/lib/mysql/
+      volumes:
+        - name: datastore
+          persistentVolumeClaim:
+            claimName: database-pvc-uses    
+
