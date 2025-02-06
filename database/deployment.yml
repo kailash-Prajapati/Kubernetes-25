@@ -48,5 +48,5 @@ spec:
       volumes:
         - name: datastore
           persistentVolumeClaim:
-            claimName: database-pvc-uses    
+            claimName: database-pvc-uses       
 
