@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: database
+metadata:
+  name:  database
+  lables: 
+    app: mysql
+    enviroment: database 

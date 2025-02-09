@@ -3,9 +3,9 @@ kind: PersistentVolume
 metadata:
   name: database-pv-vol
   namespace: database
-  labels:
-    app: mysql 
-    enviornment: database
+  lables: 
+    app: mysql
+    enviroment: database
 spec:
   capacity:
     storage: 2Gi
@@ -13,6 +13,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
+  storageClassName: slow
   mountOptions:
     - hard
     - nfsvers=4.1
@@ -26,9 +27,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: database-pvc-uses
   namespace: database
-  labels:
-    app: mysql 
-    enviornment: database
+  lables: 
+    app: mysql
+    enviroment: database
 spec:
   resources:
     requests:
