@@ -19,7 +19,7 @@ spec:
     - nfsvers=4.1
   nfs:
     path: /data/sqldata
-    server: 172.31.6.95
+    server: 172.31.7.102
 
 ---
 apiVersion: v1
